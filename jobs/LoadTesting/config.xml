@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/kapilmahant/loadTesting.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <jenkins.plugins.shiningpanda.builders.VirtualenvBuilder plugin="shiningpanda@0.22">
+      <pythonName>System-CPython-2.7</pythonName>
+      <home></home>
+      <clear>true</clear>
+      <systemSitePackages>false</systemSitePackages>
+      <nature>shell</nature>
+      <command># pip install -U setuptools
+# pip install -U pip
+
+
+
+### pylot 
+rm -r results || true
+wget http://pylt.googlecode.com/files/pylot_1.26.zip 
+unzip -o pylot_1.26.zip
+python pylot_1.26/run.py -x pylot/testcase.xml -d 5
+cp results/*/results.html pylot_results.html
+
+
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
+ 
+### siege
+ siege --time=1S  --log=/tmp/siege.log  -H  &apos;Content-Type:application/json&apos; --header=&quot;Cookie: cookieName=cookieValue&quot; -f siege/urls.txt -c 5  -q  -m testname
+
+
+### apache benchmark 
+ab -t1 -n 100 -c 7 -H &apos;Content-Type:application/json&apos;  -C &apos;cookie_name_1=cookie_value_1;cookie_name_2=cookie_value_2;&apos; -p apachebench/data.json  -w   http://192.168.150.110:23456/requestdetails   &gt; ab_report.html
+
+
+### gatling 
+wget  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/2.1.7/gatling-charts-highcharts-bundle-2.1.7-bundle.zip 
+unzip -o gatling-charts-highcharts-bundle-2.1.7-bundle.zip
+gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/
+cp results/happypath-*/index.html  gatling.html
+
+
+
+
+
+</command>
+      <ignoreExitCode>false</ignoreExitCode>
+    </jenkins.plugins.shiningpanda.builders.VirtualenvBuilder>
+  </builders>
+  <publishers>
+    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.9">
+      <reportTargets>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Pylot Report</reportName>
+          <reportDir></reportDir>
+          <reportFiles>pylot_results.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>AB Report</reportName>
+          <reportDir></reportDir>
+          <reportFiles>ab_report.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Gatling Report</reportName>
+          <reportDir></reportDir>
+          <reportFiles>results/happypath-*/index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+      </reportTargets>
+    </htmlpublisher.HtmlPublisher>
+    <io.gatling.jenkins.GatlingPublisher plugin="gatling@1.1.1">
+      <enabled>true</enabled>
+    </io.gatling.jenkins.GatlingPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>
