@@ -38,6 +38,14 @@
 
 
 
+### jmeter 
+wget http://mirror.olnevhost.net/pub/apache//jmeter/binaries/apache-jmeter-2.13.zip 
+unzip apache-jmeter* 
+sh apache-jmeter*/bin/jmeter.sh  -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl 
+#/usr/local/bin/jmeter -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl 
+
+#exit
+
 ### pylot 
 rm -r results || true
 wget http://pylt.googlecode.com/files/pylot_1.26.zip 
@@ -61,7 +69,6 @@ wget  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highch
 unzip -o gatling-charts-highcharts-bundle-2.1.7-bundle.zip
 gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/
 cp results/happypath-*/index.html  gatling.html
-
 
 
 
@@ -99,6 +106,28 @@ cp results/happypath-*/index.html  gatling.html
         </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
+    <hudson.plugins.performance.PerformancePublisher plugin="performance@1.13">
+      <errorFailedThreshold>0</errorFailedThreshold>
+      <errorUnstableThreshold>0</errorUnstableThreshold>
+      <errorUnstableResponseTimeThreshold></errorUnstableResponseTimeThreshold>
+      <relativeFailedThresholdPositive>0.0</relativeFailedThresholdPositive>
+      <relativeFailedThresholdNegative>0.0</relativeFailedThresholdNegative>
+      <relativeUnstableThresholdPositive>0.0</relativeUnstableThresholdPositive>
+      <relativeUnstableThresholdNegative>0.0</relativeUnstableThresholdNegative>
+      <nthBuildNumber>0</nthBuildNumber>
+      <modeRelativeThresholds>false</modeRelativeThresholds>
+      <configType>ART</configType>
+      <modeOfThreshold>false</modeOfThreshold>
+      <compareBuildPrevious>false</compareBuildPrevious>
+      <xml></xml>
+      <modePerformancePerTestCase>true</modePerformancePerTestCase>
+      <parsers>
+        <hudson.plugins.performance.JMeterParser>
+          <glob>jmeter_report.jtl</glob>
+        </hudson.plugins.performance.JMeterParser>
+      </parsers>
+      <modeThroughput>false</modeThroughput>
+    </hudson.plugins.performance.PerformancePublisher>
     <io.gatling.jenkins.GatlingPublisher plugin="gatling@1.1.1">
       <enabled>true</enabled>
     </io.gatling.jenkins.GatlingPublisher>
