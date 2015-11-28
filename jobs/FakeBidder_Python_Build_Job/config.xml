@@ -87,12 +87,30 @@ pylint -f parseable --rcfile=pylint.cfg fakebidder/*.py &gt; pylint.log  || true
 
 echo &quot;BUILDING DIST&quot;
 
+
 python setup.py bdist_rpm
 
+
+
+
+
+echo SONAR RUNNER
+ls -l /opt/sonar-runner/
+
+ls -l /opt/sonar-project.properties
 
 </command>
       <ignoreExitCode>false</ignoreExitCode>
     </jenkins.plugins.shiningpanda.builders.VirtualenvBuilder>
+    <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.3">
+      <project>sonar_confs/sonar-fakebidder.properties</project>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <additionalArguments></additionalArguments>
+      <jdk>(Inherit From Job)</jdk>
+      <sonarRunnerName>SonarQube Runner</sonarRunnerName>
+      <task></task>
+    </hudson.plugins.sonar.SonarRunnerBuilder>
   </builders>
   <publishers>
     <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.9.7">
