@@ -33,24 +33,15 @@
       <clear>true</clear>
       <systemSitePackages>false</systemSitePackages>
       <nature>shell</nature>
-      <command># pip install -U setuptools
-# pip install -U pip
+      <command>### gatling ( new ) 
+sh /opt/gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/  -rf `pwd`/gatling_results/
+#cp gatling_results/happypath-*/index.html  gatling.html
 
 
-
-### jmeter 
-wget http://mirror.olnevhost.net/pub/apache//jmeter/binaries/apache-jmeter-2.13.zip 
-unzip apache-jmeter* 
-sh apache-jmeter*/bin/jmeter.sh  -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl 
-#/usr/local/bin/jmeter -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl 
-
-#exit
 
 ### pylot 
 rm -r results || true
-wget http://pylt.googlecode.com/files/pylot_1.26.zip 
-unzip -o pylot_1.26.zip
-python pylot_1.26/run.py -x pylot/testcase.xml -d 5
+python /opt/pylot_1.26/run.py  -x pylot/testcase.xml -d 5
 cp results/*/results.html pylot_results.html
 
 
@@ -61,14 +52,22 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 
 
 ### apache benchmark 
-ab -t1 -n 100 -c 7 -H &apos;Content-Type:application/json&apos;  -C &apos;cookie_name_1=cookie_value_1;cookie_name_2=cookie_value_2;&apos; -p apachebench/data.json  -w   http://192.168.150.110:23456/requestdetails   &gt; ab_report.html
+ab -t1 -n 100 -c 7 -H &apos;Content-Type:application/json&apos;  -C &apos;cookie_name_1=cookie_value_1;cookie_name_2=cookie_value_2;&apos; -p apachebench/data.json  -w   http://192.168.150.110:10001/requestdetails   &gt; ab_report.html
+
+
+### jmeter 
+sh /opt/apache-jmeter-*/bin/jmeter.sh -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl
+
+
 
 
 ### gatling 
-wget  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/2.1.7/gatling-charts-highcharts-bundle-2.1.7-bundle.zip 
-unzip -o gatling-charts-highcharts-bundle-2.1.7-bundle.zip
-gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/
-cp results/happypath-*/index.html  gatling.html
+#wget  https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/2.1.7/gatling-charts-highcharts-bundle-2.1.7-bundle.zip 
+#unzip -o gatling-charts-highcharts-bundle-2.1.7-bundle.zip
+#gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/
+#cp results/happypath-*/index.html  gatling.html
+
+
 
 
 
@@ -99,7 +98,7 @@ cp results/happypath-*/index.html  gatling.html
         <htmlpublisher.HtmlPublisherTarget>
           <reportName>Gatling Report</reportName>
           <reportDir></reportDir>
-          <reportFiles>results/happypath-*/index.html</reportFiles>
+          <reportFiles>gatling_results/happypath-*/index.html</reportFiles>
           <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
           <keepAll>false</keepAll>
           <allowMissing>false</allowMissing>

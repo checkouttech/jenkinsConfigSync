@@ -195,6 +195,7 @@ ls -l /opt/sonar-runner/
     <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.9">
       <testResults>results.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
       <healthScaleFactor>1.0</healthScaleFactor>
     </hudson.tasks.junit.JUnitResultArchiver>
     <hudson.tasks.ArtifactArchiver>
