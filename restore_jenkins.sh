@@ -12,3 +12,6 @@ sudo cp jenkinsConfigSync/configure/*   /var/lib/jenkins/
 
 # change permissions 
 sudo chown -R jenkins:jenkins  /var/lib/jenkins/
+
+# restart jenkins 
+sudo service jenkins restart

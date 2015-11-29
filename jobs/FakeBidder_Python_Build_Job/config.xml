@@ -97,7 +97,6 @@ python setup.py bdist_rpm
 echo SONAR RUNNER
 ls -l /opt/sonar-runner/
 
-ls -l /opt/sonar-project.properties
 
 </command>
       <ignoreExitCode>false</ignoreExitCode>
