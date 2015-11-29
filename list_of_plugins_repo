@@ -48,3 +48,7 @@ http://updates.jenkins-ci.org/latest/violations.hpi
 http://updates.jenkins-ci.org/latest/windows-slaves.hpi
 http://updates.jenkins-ci.org/latest/workflow-step-api.hpi
 http://updates.jenkins-ci.org/latest/ws-cleanup.hpi
+http://updates.jenkins-ci.org/latest/scp.hpi
+http://updates.jenkins-ci.org/latest/robot.hpi
+
+
