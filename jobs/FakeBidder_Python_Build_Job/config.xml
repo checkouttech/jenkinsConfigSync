@@ -87,11 +87,19 @@ pylint -f parseable --rcfile=pylint.cfg fakebidder/*.py &gt; pylint.log  || true
 
 echo &quot;BUILDING DIST&quot;
 
+# python setup.py bdist_rpm
+# python setup.py --help
+# python setup.py bdist_rpm --help 
 
-python setup.py bdist_rpm
+# python setup.py bdist_rpm --prefix --help 
+# python setup.py bdist_rpm --prefix=/usr
+# python setup.py bdist_rpm --help 
+# python setup.py bdist_rpm  --requires --help 
+# python setup.py bdist_rpm --requires /usr
+#python setup.py bdist_rpm  --python=&quot;/usr/lib/python2.7/site-packages/&quot; 
 
-
-
+# --python required to avoid virtualenv paths being used during installation
+python setup.py bdist_rpm  --python=&quot;/usr/bin/python&quot;
 
 
 echo SONAR RUNNER
@@ -192,7 +200,7 @@ ls -l /opt/sonar-runner/
         </htmlpublisher.HtmlPublisherTarget>
       </reportTargets>
     </htmlpublisher.HtmlPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.9">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.2-beta-4">
       <testResults>results.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
