@@ -15,15 +15,11 @@ http://updates.jenkins-ci.org/latest/github.hpi
 http://updates.jenkins-ci.org/latest/graphiteIntegrator.hpi
 http://updates.jenkins-ci.org/latest/greenballs.hpi
 http://updates.jenkins-ci.org/latest/htmlpublisher.hpi
-http://updates.jenkins-ci.org/latest/htmlpublisher.hpi
 http://updates.jenkins-ci.org/latest/javadoc.hpi
 http://updates.jenkins-ci.org/latest/javadoc.hpi
 http://updates.jenkins-ci.org/latest/jobConfigHistory.hpi
 http://updates.jenkins-ci.org/latest/junit.hpi
-http://updates.jenkins-ci.org/latest/junit.hpi
 http://updates.jenkins-ci.org/latest/ldap.hpi
-http://updates.jenkins-ci.org/latest/ldap.hpi
-http://updates.jenkins-ci.org/latest/mailer.hpi
 http://updates.jenkins-ci.org/latest/mailer.hpi
 http://updates.jenkins-ci.org/latest/matrix-auth.hpi
 http://updates.jenkins-ci.org/latest/matrix-project.hpi
@@ -50,5 +46,8 @@ http://updates.jenkins-ci.org/latest/workflow-step-api.hpi
 http://updates.jenkins-ci.org/latest/ws-cleanup.hpi
 http://updates.jenkins-ci.org/latest/scp.hpi
 http://updates.jenkins-ci.org/latest/robot.hpi
-
+http://updates.jenkins-ci.org/latest/token-macro.hpi
+http://updates.jenkins-ci.org/latest/email-ext.hpi
+http://updates.jenkins-ci.org/latest/test-results-analyzer.hpi
+http://updates.jenkins-ci.org/latest/testng-plugin.hpi
 

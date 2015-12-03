@@ -33,7 +33,13 @@
       <clear>true</clear>
       <systemSitePackages>false</systemSitePackages>
       <nature>shell</nature>
-      <command>### gatling ( new ) 
+      <command>
+### jmeter 
+# sh /opt/apache-jmeter-*/bin/jmeter.sh -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl
+sh /opt/apache-jmeter-*/bin/jmeter.sh -n -t jmeter/fakebidder_loadtest.jmx   -l jmeter_report.jtl
+
+
+### gatling ( new ) 
 sh /opt/gatling-charts-highcharts-bundle-2.1.7/bin/gatling.sh   -s  HappyPath  -sf gatling/  -rf `pwd`/gatling_results/
 #cp gatling_results/happypath-*/index.html  gatling.html
 
@@ -53,11 +59,6 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 
 ### apache benchmark 
 ab -t1 -n 100 -c 7 -H &apos;Content-Type:application/json&apos;  -C &apos;cookie_name_1=cookie_value_1;cookie_name_2=cookie_value_2;&apos; -p apachebench/data.json  -w   http://192.168.150.110:10001/requestdetails   &gt; ab_report.html
-
-
-### jmeter 
-sh /opt/apache-jmeter-*/bin/jmeter.sh -n -t jmeter/HelloBlazemeter.jmx   -l jmeter_report.jtl
-
 
 
 
