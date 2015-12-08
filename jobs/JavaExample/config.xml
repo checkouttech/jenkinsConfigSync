@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/kapilmahant/javaExample.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command># delete old builds 
+#gradle clean
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command># run build 
+#gradle assemble</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
+      <description></description>
+      <switches></switches>
+      <tasks>clean test </tasks>
+      <rootBuildScriptDir></rootBuildScriptDir>
+      <buildFile></buildFile>
+      <gradleName>gradle</gradleName>
+      <useWrapper>false</useWrapper>
+      <makeExecutable>true</makeExecutable>
+      <fromRootBuildScriptDir>true</fromRootBuildScriptDir>
+      <useWorkspaceAsHome>true</useWorkspaceAsHome>
+    </hudson.plugins.gradle.Gradle>
+    <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar@2.3">
+      <project>src/test/resources/sonar-javaExample-project.properties</project>
+      <properties>src/test/resources/sonar-javaExample.properties  
+sonar-projet.properties
+</properties>
+      <javaOpts></javaOpts>
+      <additionalArguments></additionalArguments>
+      <jdk>java 1.8</jdk>
+      <sonarRunnerName>SonarQube Runner</sonarRunnerName>
+      <task></task>
+    </hudson.plugins.sonar.SonarRunnerBuilder>
+  </builders>
+  <publishers>
+    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.9">
+      <reportTargets>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Gradle TestNG Report</reportName>
+          <reportDir>build/reports/tests/</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>JaCoCo HTML Report</reportName>
+          <reportDir>build/jacocoHtml/</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+      </reportTargets>
+    </htmlpublisher.HtmlPublisher>
+    <hudson.plugins.testng.Publisher plugin="testng-plugin@1.10">
+      <reportFilenamePattern>build/reports/tests/testng-results.xml</reportFilenamePattern>
+      <escapeTestDescp>true</escapeTestDescp>
+      <escapeExceptionMsg>true</escapeExceptionMsg>
+      <showFailedBuilds>false</showFailedBuilds>
+      <unstableOnSkippedTests>false</unstableOnSkippedTests>
+      <failureOnFailedTestConfig>false</failureOnFailedTestConfig>
+    </hudson.plugins.testng.Publisher>
+    <hudson.plugins.jacoco.JacocoPublisher plugin="jacoco@2.0.0">
+      <execPattern>**/**.exec</execPattern>
+      <classPattern>build/classes</classPattern>
+      <sourcePattern>src/main/java</sourcePattern>
+      <inclusionPattern></inclusionPattern>
+      <exclusionPattern></exclusionPattern>
+      <minimumInstructionCoverage>0</minimumInstructionCoverage>
+      <minimumBranchCoverage>0</minimumBranchCoverage>
+      <minimumComplexityCoverage>0</minimumComplexityCoverage>
+      <minimumLineCoverage>0</minimumLineCoverage>
+      <minimumMethodCoverage>0</minimumMethodCoverage>
+      <minimumClassCoverage>0</minimumClassCoverage>
+      <maximumInstructionCoverage>0</maximumInstructionCoverage>
+      <maximumBranchCoverage>0</maximumBranchCoverage>
+      <maximumComplexityCoverage>0</maximumComplexityCoverage>
+      <maximumLineCoverage>0</maximumLineCoverage>
+      <maximumMethodCoverage>0</maximumMethodCoverage>
+      <maximumClassCoverage>0</maximumClassCoverage>
+      <changeBuildStatus>false</changeBuildStatus>
+    </hudson.plugins.jacoco.JacocoPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>
