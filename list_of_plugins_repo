@@ -50,4 +50,8 @@ http://updates.jenkins-ci.org/latest/token-macro.hpi
 http://updates.jenkins-ci.org/latest/email-ext.hpi
 http://updates.jenkins-ci.org/latest/test-results-analyzer.hpi
 http://updates.jenkins-ci.org/latest/testng-plugin.hpi
+http://updates.jenkins-ci.org/latest/gradle.jpi
+http://updates.jenkins-ci.org/latest/jacoco.jpi
+
+
 
