@@ -38,8 +38,8 @@
     </hudson.tasks.Shell>
     <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
       <description></description>
-      <switches></switches>
-      <tasks>clean test </tasks>
+      <switches>--profile </switches>
+      <tasks>clean   test   build   buildRpm  htmlDependencyReport    projectReport   buildDashboard  </tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>gradle</gradleName>
@@ -59,8 +59,19 @@ sonar-projet.properties
       <sonarRunnerName>SonarQube Runner</sonarRunnerName>
       <task></task>
     </hudson.plugins.sonar.SonarRunnerBuilder>
+    <hudson.tasks.Shell>
+      <command>mv  build/reports/profile/profile-*.html  build/reports/profile/profile.html</command>
+    </hudson.tasks.Shell>
   </builders>
   <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>build/distributions/</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
     <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.9">
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
@@ -75,6 +86,30 @@ sonar-projet.properties
           <reportName>JaCoCo HTML Report</reportName>
           <reportDir>build/jacocoHtml/</reportDir>
           <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Dependency HTML Report</reportName>
+          <reportDir>build/reports/project/dependencies/</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Build Dashboard </reportName>
+          <reportDir></reportDir>
+          <reportFiles>build/reports/buildDashboard/index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>Profile Report</reportName>
+          <reportDir></reportDir>
+          <reportFiles>build/reports/profile/profile.html</reportFiles>
           <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
           <keepAll>false</keepAll>
           <allowMissing>false</allowMissing>
