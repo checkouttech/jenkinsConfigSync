@@ -39,7 +39,7 @@
     <hudson.plugins.gradle.Gradle plugin="gradle@1.24">
       <description></description>
       <switches>--profile </switches>
-      <tasks>clean   test   build   buildRpm  htmlDependencyReport    projectReport   buildDashboard  </tasks>
+      <tasks>clean   test   build   buildRpm  htmlDependencyReport    projectReport   buildDashboard  javadoc</tasks>
       <rootBuildScriptDir></rootBuildScriptDir>
       <buildFile></buildFile>
       <gradleName>gradle</gradleName>
@@ -110,6 +110,14 @@ sonar-projet.properties
           <reportName>Profile Report</reportName>
           <reportDir></reportDir>
           <reportFiles>build/reports/profile/profile.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>JavaDocs Generated</reportName>
+          <reportDir>build/docs/javadoc/</reportDir>
+          <reportFiles>index.html</reportFiles>
           <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
           <keepAll>false</keepAll>
           <allowMissing>false</allowMissing>
