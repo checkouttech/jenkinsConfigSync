@@ -31,7 +31,7 @@
       <name>local sbt</name>
       <jvmFlags></jvmFlags>
       <sbtFlags>-Dsbt.log.noformat=true</sbtFlags>
-      <actions>clean compile coverage test </actions>
+      <actions>clean compile coverage unitTests </actions>
       <subdirPath></subdirPath>
     </org.jvnet.hudson.plugins.SbtPluginBuilder>
     <org.jvnet.hudson.plugins.SbtPluginBuilder plugin="sbt@1.5">
