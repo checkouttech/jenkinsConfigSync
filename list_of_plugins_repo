@@ -52,6 +52,33 @@ http://updates.jenkins-ci.org/latest/test-results-analyzer.hpi
 http://updates.jenkins-ci.org/latest/testng-plugin.hpi
 http://updates.jenkins-ci.org/latest/gradle.jpi
 http://updates.jenkins-ci.org/latest/jacoco.jpi
+http://updates.jenkins-ci.org/latest/sbt.jpi
+http://updates.jenkins-ci.org/latest/scala-junit-name-decoder.jpi
+http://updates.jenkins-ci.org/latest/scoverage.jpi
+http://updates.jenkins-ci.org/latest/lysis-core.jpi
+http://updates.jenkins-ci.org/latest/checkstyle.jpi
+http://updates.jenkins-ci.org/latest/warnings.jpi
+http://updates.jenkins-ci.org/latest/analysis-collector.jpi
+http://updates.jenkins-ci.org/latest/dry.jpi
+http://updates.jenkins-ci.org/latest/pmd.jpi
+http://updates.jenkins-ci.org/latest/tasks.jpi
+http://updates.jenkins-ci.org/latest/findbugs.jpi
+http://updates.jenkins-ci.org/latest/buildgraph-view.jpi
+http://updates.jenkins-ci.org/latest/build-flow-plugin.jpi
+http://updates.jenkins-ci.org/latest/build-flow-extensions-plugin.jpi
+http://updates.jenkins-ci.org/latest/build-monitor-plugin.jpi
+http://updates.jenkins-ci.org/latest/claim.jpi
+http://updates.jenkins-ci.org/latest/build-name-setter.jpi
+http://updates.jenkins-ci.org/latest/jenkinswalldisplay.jpi
+http://updates.jenkins-ci.org/latest/cucumber-reports.jpi
+http://updates.jenkins-ci.org/latest/covcomplplot.jpi
+http://updates.jenkins-ci.org/latest/join.jpi
+http://updates.jenkins-ci.org/latest/thinBackup.jpi
+http://updates.jenkins-ci.org/latest/parameterized-trigger.jpi
+http://updates.jenkins-ci.org/latest/xunit.jpi
+http://updates.jenkins-ci.org/latest/scriptler.jpi
+
+
 
 
 
